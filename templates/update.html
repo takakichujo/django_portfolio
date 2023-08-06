@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block header %}
+{% endblock header %}
+{% block content %}
+<h2> 確認 </h2>
+    <p>id-> {{postId}}<p>
+    <p>name-> {{postName}}<p>
+    <p>age-> {{postAge}}<p>
+    <p>email-> {{postMail}}<p>
+    <p>都道府県番号-> {{postPrefecture_no}}<p>
+    <p>都道府県名-> {{postPrefecture_name}}<p>
+    <p>都道府県かな-> {{postPrefecture_kana}}<p>
+    <button onclick="clickBack()">一覧へ戻る</button>
+    <script>
+        function clickBack() {
+            location.href = '{% url "front" %}';
+        }
+    </script>
+{% endblock content %}

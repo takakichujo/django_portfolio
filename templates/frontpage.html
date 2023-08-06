@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block header %}
+{% endblock header %}
+{% block content %}
+<button onclick="clickBack()">新規登録する</button> <br>
+    <script>
+        function clickBack() {
+            location.href = '{% url "new" %}';
+        }
+    </script>
+<form action="{% url 'delete' %}" method="POST">
+    {% csrf_token %}
+{% for post in indexPage  %}
+<input type="checkbox" name="checkbox_list[]" value="{{post.id}}"> 
+
+<a href="{% url 'detail' post.pk %}">{{post.name}}</a> <br>
+
+{% endfor %}
+
+    
+    <input type="submit" value="削除する" onclick="buttonClick()">
+        <script>function buttonClick(){
+                    alert('削除しますか?'); }
+        </script>
+</form>
+<div class="pager">
+    <!-- 前のページへのリンク -->
+    {% if indexPage.has_previous %}
+        <a href="?p={{ indexPage.previous_page_number }}">前へ</a>
+    {% endif %}
+
+    <!-- 現在のページ番号と全体のページ数 -->
+    <span>
+        {{ indexPage.number }} / {{ indexPage.paginator.num_pages }}
+    </span>
+
+    <!-- 次のページへのリンク -->
+    {% if indexPage.has_next %}
+        <a href="?p={{ indexPage.next_page_number }}">次へ</a>
+    {% endif %}
+</div>
+{% endblock content %}

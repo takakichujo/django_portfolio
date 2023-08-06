@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block header %}
+{% endblock header %}
+{% block content %}
+<body>
+    <form action="{% url 'updateform' post.pk %}" method="POST">
+        {% csrf_token %}
+        <label for="name">id:</label>
+        <input type="text"  name="id"  value="{{post.id}}" Readonly> <br>
+        <label for="name">名前:</label>
+        <input type="text"  name="name" value="{{post.name}}"> <br>
+        <label for="age">年齢:</label>
+        <input type="text"  name="age" value="{{post.age}}"> <br>
+        <label for="email">メールアドレス:</label>
+        <input type="email" name="mail" value="{{post.mail}}"><br>
+        
+        <div>
+		    <label for="prefecture_no">都道府県番号</label>
+            <select name="prefecture_no">
+                
+                <option value="{{post.prefecture_no}}" selected>{{post.prefecture_no}}</option>
+                {% for postFormNo in postForm %}
+                <option value="{{postFormNo.prefecture_no}}">{{postFormNo.prefecture_no}}</option>
+                {% endfor %}
+            </select>
+            <br>
+            <label for="prefecture_name">都道府県名</label>
+            <select name="prefecture_name">
+                
+                <option value="{{post.prefecture_name}}" selected>{{post.prefecture_name}}</option>
+                {% for postFormName in postForm %}
+                <option value="{{postFormName.prefecture_name}}"> {{postFormName.prefecture_name}}</option>
+                {% endfor %}
+            </select>
+            <br>
+            <label for="prefecture_kana">都道府県カナ</label>
+            <select name="prefecture_kana">
+                
+                <option value="{{post.prefecture_kana}}" selected>{{post.prefecture_kana}}</option>
+                {% for postFormkana in postForm %}
+                <option value="{{postFormkana.prefecture_kana}}"> {{postFormkana.prefecture_kana}}</option>
+                {% endfor %}
+            </select>
+            <br>
+        </div>
+        <input type="submit" name="confirm" value="更新する">
+    </form> 
+</body>
+</html>
+{% endblock content %}

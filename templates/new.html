@@ -1,0 +1,44 @@
+    {% extends "base.html" %}   
+    {% block header %}
+    {% endblock header %}
+    {% block content %}
+    
+<form action="{% url 'create' %}" method="POST"> {% csrf_token %}
+    <input type="hidden" name="id" value="{{postId}}">
+
+    <label for="name">名前:</label>
+    <input type="text"  name="name" value=""> <br>
+    <label for="age">年齢:</label>
+    <input type="text"  name="age" value=""> <br>
+    <label for="email">メールアドレス:</label>
+    <input type="email" name="mail" value=""><br>
+    
+    <div>
+        <label for="prefecture_no">都道府県番号</label>
+        <select name="prefecture_no">
+            <option value=""selected>選択してください</option>
+            {% for postFormNo in postForm %}
+            <option value="{{postFormNo.prefecture_no}}">{{postFormNo.prefecture_no}}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <label for="prefecture_name">都道府県名</label>
+        <select name="prefecture_name">
+            <option value="" selected>選択してください</option>
+            {% for postFormName in postForm %}
+                <option value="{{postFormName.prefecture_name}}">{{postFormName.prefecture_name}}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <label for="prefecture_kana">都道府県カナ</label>
+        <select name="prefecture_kana">
+            <option value="" selected>選択してください</option>
+            {% for postFormKana in postForm %}
+                <option value="{{postFormKana.prefecture_kana}}">{{postFormKana.prefecture_kana}}</option>
+            {% endfor %}
+        </select>
+        <br>
+    </div>
+    <input type="submit" value="登録する">
+</form> 
+{% endblock content %}

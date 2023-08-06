@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block header %}
+{% endblock header %}
+{% block content %}
+<h3>削除しました</h3>
+<button onclick="clickBack()">一覧へ戻る</button>
+<script>
+    function clickBack() {
+        location.href = '{% url "front" %}';
+    }
+</script>
+{% endblock content %}
